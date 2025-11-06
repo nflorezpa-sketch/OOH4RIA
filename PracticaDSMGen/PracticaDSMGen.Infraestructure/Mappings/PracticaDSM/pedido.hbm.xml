@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGen.Infraestructure"
+		                   namespace="PracticaDSMGen.Infraestructure.EN.PracticaDSM">
+		    
+		    
+			
+				<class name="PedidoNH" table="Pedido"> 
+				  	
+						<id name="Id" column="idPedido" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Total" type="float"> 
+						<column name="total"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+					
+							<many-to-one name="Transaccion" class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.TransaccionNH" >
+								<column name="FK_idTransaccion_idTransaccion"/> 
+        					</many-to-one>
+					 
+						
+			
+		  			
+						<bag name="Videojuego" table="[videojuego_pedido]" inverse="true" >
+							<key>
+								
+									<column name="FK_idPedido_idPedido"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.VideojuegoNH">
+									<column name="FK_idVideojuego_idVideojuego"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<many-to-one name="Usuario" class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.UsuarioNH" >	
+								<column name="FK_idUsuario_idUsuario"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PedidoNHReadAllHQL">from PedidoNH</query>
+		</hibernate-mapping>
+	

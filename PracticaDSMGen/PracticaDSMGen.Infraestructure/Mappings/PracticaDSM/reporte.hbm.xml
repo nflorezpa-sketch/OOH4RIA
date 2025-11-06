@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGen.Infraestructure"
+		                   namespace="PracticaDSMGen.Infraestructure.EN.PracticaDSM">
+		    
+		    
+			
+				<class name="ReporteNH" table="Reporte"> 
+				  	
+						<id name="Id" column="idReporte" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="UsuarioReportado" type="string"> 
+						<column name="usuarioReportado"  not-null="true"/>
+					</property>
+					<property name="Motivo" type="string"> 
+						<column name="motivo"  not-null="true"/>
+					</property>
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
+					<property name="Estado" > 
+						<column name="estado"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="Moderador" table="[moderador_reporte]" inverse="true" >
+							<key>
+								
+									<column name="FK_idReporte_idReporte"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.ModeradorNH">
+									<column name="FK_idModerador_idModerador"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<many-to-one name="Usuario" class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.UsuarioNH" >	
+								<column name="FK_idUsuario_idUsuario"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ReporteNHReadAllHQL">from ReporteNH</query>
+		</hibernate-mapping>
+	

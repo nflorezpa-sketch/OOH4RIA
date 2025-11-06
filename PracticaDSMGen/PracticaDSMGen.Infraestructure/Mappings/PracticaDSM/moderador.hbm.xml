@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGen.Infraestructure"
+		                   namespace="PracticaDSMGen.Infraestructure.EN.PracticaDSM">
+		    
+		    
+			
+				<class name="ModeradorNH" table="Moderador"> 
+				  	
+						<id name="Id" column="idModerador" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Correo" type="string"> 
+						<column name="correo"  not-null="true"/>
+					</property>
+					<property name="Contraseña" type="string"> 
+						<column name="contraseña"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<bag name="Reporte" table="[moderador_reporte]"  >
+							<key>
+								
+									<column name="FK_idModerador_idModerador"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.ReporteNH">
+									<column name="FK_idReporte_idReporte"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Soporte" table="[moderador_soporte]"  >
+							<key>
+								
+									<column name="FK_idModerador_idModerador"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.SoporteNH">
+									<column name="FK_idSoporte_idSoporte"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ModeradorNHReadAllHQL">from ModeradorNH</query>
+		</hibernate-mapping>
+	

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGen.Infraestructure"
+		                   namespace="PracticaDSMGen.Infraestructure.EN.PracticaDSM">
+		    
+		    
+			
+				<class name="UsuarioNH" table="Usuario"> 
+				  	
+						<id name="Id" column="idUsuario" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="NombreUsuario" type="string"> 
+						<column name="nombreUsuario"  not-null="true"/>
+					</property>
+					<property name="Correo" type="string"> 
+						<column name="correo"  not-null="true"/>
+					</property>
+					<property name="Telefono" type="string"> 
+						<column name="telefono"  not-null="true"/>
+					</property>
+					<property name="Apodo" type="string"> 
+						<column name="apodo"  not-null="true"/>
+					</property>
+					<property name="Contraseña" type="string"> 
+						<column name="contraseña"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="Insignia" table="[insignia_usuario]" inverse="true" >
+							<key>
+								
+									<column name="FK_idUsuario_idUsuario"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.InsigniaNH">
+									<column name="FK_idInsignia_idInsignia"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Videojuego" >
+							<key>
+							
+								
+								<column name="FK_idUsuario_idUsuario"/>
+					      	</key>
+							<one-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.VideojuegoNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Reporte" >
+							<key>
+							
+								
+								<column name="FK_idUsuario_idUsuario"/>
+					      	</key>
+							<one-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.ReporteNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Soporte" >
+							<key>
+							
+								
+								<column name="FK_idUsuario_idUsuario"/>
+					      	</key>
+							<one-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.SoporteNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Pedido" >
+							<key>
+							
+								
+								<column name="FK_idUsuario_idUsuario"/>
+					      	</key>
+							<one-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.PedidoNH"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="UsuarioNHReadAllHQL">from UsuarioNH</query>
+		  <query name="UsuarioNHfiltrarProductosPrecioHQL"><![CDATA[FROM VideojuegoEN AS v WHERE v.precio <= :p_precioMaximo]]></query>
+		  <query name="UsuarioNHObtenerUsuariosPorInsigniaHQL"><![CDATA[SELECT u FROM UsuarioEN AS u JOIN u.Insignias AS i WHERE i.id = :p_idInsignia]]></query>
+		</hibernate-mapping>
+	

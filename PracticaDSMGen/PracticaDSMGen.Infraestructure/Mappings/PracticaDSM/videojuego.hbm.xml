@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGen.Infraestructure"
+		                   namespace="PracticaDSMGen.Infraestructure.EN.PracticaDSM">
+		    
+		    
+			
+				<class name="VideojuegoNH" table="Videojuego"> 
+				  	
+						<id name="Id" column="idVideojuego" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Precio" type="double"> 
+						<column name="precio"  not-null="true"/>
+					</property>
+			
+			
+			
+		  			
+						<many-to-one name="Categoria" class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.CategoriaNH" >	
+								<column name="FK_idCategoria_idCategoria"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Usuario" class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.UsuarioNH" >	
+								<column name="FK_idUsuario_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="Pedido" table="[videojuego_pedido]"  >
+							<key>
+								
+									<column name="FK_idVideojuego_idVideojuego"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.PedidoNH">
+									<column name="FK_idPedido_idPedido"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Desafio" table="[videojuego_desafio]"  >
+							<key>
+								
+									<column name="FK_idVideojuego_idVideojuego"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.DesafioNH">
+									<column name="FK_idDesafio_idDesafio"/> 
+      						</many-to-many>
+    					</bag>
+			
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="VideojuegoNHReadAllHQL">from VideojuegoNH</query>
+		</hibernate-mapping>
+	

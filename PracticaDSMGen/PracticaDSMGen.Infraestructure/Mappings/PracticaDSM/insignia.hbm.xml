@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGen.Infraestructure"
+		                   namespace="PracticaDSMGen.Infraestructure.EN.PracticaDSM">
+		    
+		    
+			
+				<class name="InsigniaNH" table="Insignia"> 
+				  	
+						<id name="Id" column="idInsignia" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Perfil" > 
+						<column name="perfil"  not-null="true"/>
+					</property>
+					<property name="RutaDeImg" type="string"> 
+						<column name="rutaDeImg"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<bag name="Desafio" table="[desafio_insignia]" inverse="true" >
+							<key>
+								
+									<column name="FK_idInsignia_idInsignia"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.DesafioNH">
+									<column name="FK_idDesafio_idDesafio"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Usuario" table="[insignia_usuario]"  >
+							<key>
+								
+									<column name="FK_idInsignia_idInsignia"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGen.Infraestructure.EN.PracticaDSM.UsuarioNH">
+									<column name="FK_idUsuario_idUsuario"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="InsigniaNHReadAllHQL">from InsigniaNH</query>
+		</hibernate-mapping>
+	

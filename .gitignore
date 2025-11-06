@@ -1,0 +1,29 @@
+## Visual Studio
+.vs/
+bin/
+obj/
+*.suo
+*.user
+*.cache
+*.log
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+## NuGet
+*.nupkg
+**/packages/*
+
+## Database
+*.db
+*.mdf
+*.ldf
+
+## Eclipse/OOH4RIA
+.settings/
+.classpath
+.project
+*.launch

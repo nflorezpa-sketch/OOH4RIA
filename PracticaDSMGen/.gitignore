@@ -1,0 +1,23 @@
+## Visual Studio
+.vs/
+bin/
+obj/
+*.suo
+*.user
+*.cache
+*.log
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+## NuGet
+*.nupkg
+**/packages/*
+
+## Others
+*.db
+*.mdf
+*.ldf
